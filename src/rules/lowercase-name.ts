@@ -73,7 +73,10 @@ const jestFunctionName = (
   return null;
 };
 
-export default createRule({
+export default createRule<
+  [Partial<{ ignore: readonly JestFunctionName[] }>],
+  'unexpectedLowercase'
+>({
   name: __filename,
   meta: {
     type: 'suggestion',
@@ -100,9 +103,9 @@ export default createRule({
         additionalProperties: false,
       },
     ],
-  } as const,
-  defaultOptions: [{ ignore: [] } as { ignore: readonly JestFunctionName[] }],
-  create(context, [{ ignore }]) {
+  },
+  defaultOptions: [{ ignore: [] }],
+  create(context, [{ ignore = [] }]) {
     return {
       CallExpression(node) {
         if (!isJestFunctionWithLiteralArg(node)) {

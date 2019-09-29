@@ -46,6 +46,7 @@ ruleTester.run('lowercase-name', rule, {
     'describe(``)',
     'describe("")',
     'describe(42)',
+    { code: 'describe(42)', options: [{ ignore: undefined }] },
   ],
 
   invalid: [
