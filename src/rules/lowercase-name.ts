@@ -96,7 +96,13 @@ export default createRule<
         properties: {
           ignore: {
             type: 'array',
-            items: { enum: ['describe', 'test', 'it'] },
+            items: {
+              enum: [
+                DescribeAlias.describe,
+                TestCaseName.test,
+                TestCaseName.it,
+              ],
+            },
             additionalItems: false,
           },
         },
